@@ -1,0 +1,60 @@
+/* ═══════════════════════════════════════════════
+   MANAGE ITEMS PAGE — Premium Layout
+   ═══════════════════════════════════════════════ */
+
+.items-container {
+    display: flex;
+    height: calc(100vh - 60px);
+    background: #080c12;
+    overflow: hidden;
+}
+
+/* ── LEFT: Scrollable Form Panel ──────────── */
+.items-container .left-column {
+    flex: 1;
+    height: 100%;               /* explicit height — required for overflow-y to work */
+    overflow-y: scroll;         /* force scroll always visible */
+    overflow-x: hidden;
+    padding: 32px 28px 80px;
+    background: #080c12;
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(99,102,241,0.3) transparent;
+}
+
+.items-container .left-column::-webkit-scrollbar { width: 5px; }
+.items-container .left-column::-webkit-scrollbar-track { background: transparent; }
+.items-container .left-column::-webkit-scrollbar-thumb {
+    background: rgba(99,102,241,0.5);
+    border-radius: 4px;
+}
+
+/* Centre the form card */
+.items-container .left-column .item-form-card {
+    margin: 0 auto;
+}
+
+/* ── RIGHT: Item List Sidebar ─────────────── */
+.items-container .right-column {
+    width: 360px;
+    flex-shrink: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: rgba(13,17,26,0.98);
+    border-left: 1px solid rgba(255,255,255,0.05);
+    overflow: hidden;
+    box-shadow: -8px 0 40px rgba(0,0,0,0.5);
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Gradient accent line at top of right panel */
+.items-container .right-column::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(99,102,241,0.6), rgba(16,185,129,0.4), transparent);
+    z-index: 1;
+}

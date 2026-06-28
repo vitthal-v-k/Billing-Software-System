@@ -1,0 +1,30 @@
+# ===========================
+# Frontend (React/Vite)
+# ===========================
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+frontend/.env.*.local
+
+# ===========================
+# Backend (Spring Boot/Maven)
+# ===========================
+backend/target/
+backend/.env
+backend/*.log
+
+# ===========================
+# IDE & OS
+# ===========================
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
+
+# ===========================
+# Outer wrapper (legacy)
+# ===========================
+client/
+node_modules/

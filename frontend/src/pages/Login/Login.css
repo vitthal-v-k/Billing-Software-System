@@ -1,0 +1,455 @@
+/* Font loaded via index.css */
+
+/* ===================== RESET & BASE ===================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===================== WRAPPER ===================== */
+.login-wrapper {
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: #050510;
+}
+
+/* ===================== ANIMATED BACKGROUND ===================== */
+.login-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.5;
+    animation: orbFloat 8s ease-in-out infinite;
+}
+
+.orb-1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #7c3aed, transparent 70%);
+    top: -150px;
+    left: -100px;
+    animation-delay: 0s;
+}
+
+.orb-2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #6366f1, transparent 70%);
+    bottom: -100px;
+    right: -100px;
+    animation-delay: -3s;
+}
+
+.orb-3 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, #a855f7, transparent 70%);
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    animation-delay: -5s;
+}
+
+@keyframes orbFloat {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    33% { transform: translateY(-30px) scale(1.05); }
+    66% { transform: translateY(20px) scale(0.95); }
+}
+
+/* ===================== GRID OVERLAY ===================== */
+.grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(99, 102, 241, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.07) 1px, transparent 1px);
+    background-size: 50px 50px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+}
+
+/* ===================== PARTICLES ===================== */
+.particles {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(168, 85, 247, 0.7);
+    animation: particleFloat linear infinite;
+}
+
+.particle-1  { left: 10%; top: 20%; animation-duration: 12s; animation-delay: 0s;    width: 3px; height: 3px; }
+.particle-2  { left: 20%; top: 80%; animation-duration: 15s; animation-delay: -2s;   width: 5px; height: 5px; background: rgba(99,102,241,0.7); }
+.particle-3  { left: 35%; top: 40%; animation-duration: 10s; animation-delay: -4s;   width: 2px; height: 2px; }
+.particle-4  { left: 50%; top: 15%; animation-duration: 18s; animation-delay: -1s;   width: 4px; height: 4px; background: rgba(139,92,246,0.7); }
+.particle-5  { left: 65%; top: 70%; animation-duration: 13s; animation-delay: -6s;   width: 3px; height: 3px; }
+.particle-6  { left: 75%; top: 25%; animation-duration: 16s; animation-delay: -3s;   width: 5px; height: 5px; background: rgba(99,102,241,0.7); }
+.particle-7  { left: 85%; top: 60%; animation-duration: 11s; animation-delay: -7s;   width: 2px; height: 2px; }
+.particle-8  { left: 90%; top: 35%; animation-duration: 14s; animation-delay: -9s;   width: 4px; height: 4px; background: rgba(168,85,247,0.7); }
+.particle-9  { left: 5%;  top: 50%; animation-duration: 17s; animation-delay: -2s;   width: 3px; height: 3px; }
+.particle-10 { left: 45%; top: 90%; animation-duration: 12s; animation-delay: -5s;   width: 5px; height: 5px; background: rgba(139,92,246,0.7); }
+.particle-11 { left: 55%; top: 5%;  animation-duration: 20s; animation-delay: -8s;   width: 2px; height: 2px; }
+.particle-12 { left: 30%; top: 60%; animation-duration: 9s;  animation-delay: -11s;  width: 4px; height: 4px; }
+
+@keyframes particleFloat {
+    0%   { transform: translateY(0px) translateX(0px); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { transform: translateY(-120px) translateX(30px); opacity: 0; }
+}
+
+/* ===================== GLASSMORPHISM CARD ===================== */
+.login-card {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 460px;
+    margin: 20px;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 48px 44px;
+    box-shadow:
+        0 0 0 1px rgba(255,255,255,0.05) inset,
+        0 40px 80px rgba(0, 0, 0, 0.6),
+        0 0 60px rgba(124, 58, 237, 0.15);
+    animation: cardEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Card top accent line */
+.login-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.8), rgba(99, 102, 241, 0.8), transparent);
+}
+
+/* ===================== BRAND ===================== */
+.brand-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 36px;
+}
+
+.brand-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.3), rgba(99, 102, 241, 0.3));
+    border: 1px solid rgba(168, 85, 247, 0.4);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+}
+
+.brand-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.brand-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #a855f7, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 0.5px;
+}
+
+/* ===================== HEADER TEXT ===================== */
+.card-header-text {
+    margin-bottom: 36px;
+}
+
+.login-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+}
+
+.login-subtitle {
+    font-size: 0.9rem;
+    color: rgba(148, 163, 184, 0.8);
+    font-weight: 400;
+}
+
+/* ===================== FORM ===================== */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ===================== INPUT GROUP ===================== */
+.input-group-custom {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.floating-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: rgba(148, 163, 184, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    transition: color 0.3s ease;
+}
+
+.input-group-custom.active .floating-label {
+    color: #a855f7;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 14px;
+    color: rgba(148, 163, 184, 0.5);
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.input-group-custom.active .input-icon {
+    color: #a855f7;
+}
+
+.login-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 14px 14px 14px 46px;
+    font-size: 0.93rem;
+    font-family: 'Inter', sans-serif;
+    color: #f1f5f9;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.login-input::placeholder {
+    color: rgba(148, 163, 184, 0.3);
+}
+
+.login-input:focus {
+    background: rgba(168, 85, 247, 0.06);
+    border-color: rgba(168, 85, 247, 0.5);
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.12);
+}
+
+/* Password toggle */
+.toggle-password {
+    position: absolute;
+    right: 14px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgba(148, 163, 184, 0.5);
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    border-radius: 6px;
+    transition: color 0.3s ease, background 0.2s ease;
+}
+
+.toggle-password:hover {
+    color: #a855f7;
+    background: rgba(168, 85, 247, 0.1);
+}
+
+/* Input glow line */
+.input-glow {
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #a855f7, #6366f1, transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 50%;
+}
+
+.input-group-custom.active .input-glow {
+    opacity: 1;
+}
+
+/* ===================== FORGOT PASSWORD ===================== */
+.forgot-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -8px;
+}
+
+.forgot-link {
+    font-size: 0.82rem;
+    color: rgba(168, 85, 247, 0.8);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.forgot-link:hover {
+    color: #a855f7;
+    text-decoration: underline;
+}
+
+/* ===================== SIGN IN BUTTON ===================== */
+.login-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 15px 24px;
+    margin-top: 8px;
+    background: linear-gradient(135deg, #7c3aed, #6366f1);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow:
+        0 4px 20px rgba(124, 58, 237, 0.4),
+        0 0 0 1px rgba(168, 85, 247, 0.3) inset;
+    letter-spacing: 0.3px;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 30px rgba(124, 58, 237, 0.55),
+        0 0 0 1px rgba(168, 85, 247, 0.4) inset;
+}
+
+.login-btn:active {
+    transform: translateY(0px);
+}
+
+.btn-text {
+    position: relative;
+    z-index: 1;
+}
+
+.btn-icon {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.login-btn:hover .btn-icon {
+    transform: translateX(4px);
+}
+
+/* Shine sweep on hover */
+.btn-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        105deg,
+        transparent 20%,
+        rgba(255, 255, 255, 0.18) 50%,
+        transparent 80%
+    );
+    transition: left 0.5s ease;
+    pointer-events: none;
+}
+
+.login-btn:hover .btn-shine {
+    left: 150%;
+}
+
+/* ===================== DIVIDER ===================== */
+.divider {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.divider span {
+    font-size: 0.72rem;
+    color: rgba(148, 163, 184, 0.35);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 520px) {
+    .login-card {
+        padding: 36px 28px;
+        border-radius: 20px;
+    }
+    .login-title {
+        font-size: 1.7rem;
+    }
+}

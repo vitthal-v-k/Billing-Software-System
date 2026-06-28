@@ -1,0 +1,169 @@
+/* ═══════════════════════════════════════════════
+   MENUBAR — Premium Glassmorphism Nav
+   ═══════════════════════════════════════════════ */
+
+.navbar.navbar-dark.bg-dark {
+    background: rgba(13, 17, 23, 0.85) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+    padding: 0 24px !important;
+    min-height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Logo */
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #e6edf3 !important;
+    text-decoration: none;
+    margin-right: 28px;
+}
+
+.navbar-brand img {
+    border-radius: 10px !important;
+    box-shadow: 0 0 14px rgba(99, 102, 241, 0.4);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-brand:hover img {
+    box-shadow: 0 0 22px rgba(99, 102, 241, 0.7);
+    transform: scale(1.05);
+}
+
+/* Nav links */
+.nav-link {
+    font-weight: 500 !important;
+    font-size: 0.82rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.9px !important;
+    margin-right: 4px !important;
+    color: #8b949e !important;
+    padding: 6px 12px !important;
+    border-radius: 8px;
+    transition: color 0.2s ease, background 0.2s ease !important;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #6366f1, #10b981);
+    border-radius: 2px;
+    transition: width 0.25s ease;
+}
+
+.nav-link:hover {
+    color: #e6edf3 !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+}
+
+.nav-link:hover::after {
+    width: 70%;
+}
+
+.nav-link.active {
+    color: #c7d2fe !important;
+    background: rgba(99, 102, 241, 0.12) !important;
+}
+
+.nav-link.active::after {
+    width: 70%;
+}
+
+/* Profile dropdown toggle */
+.nav-item.dropdown .nav-link {
+    padding: 4px 8px !important;
+    border-radius: 50px;
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.nav-item.dropdown .nav-link::after {
+    display: none;
+}
+
+.nav-item.dropdown .nav-link:hover {
+    border-color: rgba(99, 102, 241, 0.5) !important;
+    box-shadow: 0 0 14px rgba(99, 102, 241, 0.25) !important;
+    background: transparent !important;
+}
+
+.nav-item.dropdown .nav-link img {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+    background: rgba(22, 27, 34, 0.95) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 6px !important;
+    margin-top: 8px !important;
+    min-width: 150px !important;
+}
+
+.dropdown-item {
+    color: #b0b8c4 !important;
+    font-size: 0.875rem !important;
+    border-radius: 8px;
+    padding: 9px 14px !important;
+    transition: background 0.18s ease, color 0.18s ease !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background: rgba(239, 68, 68, 0.15) !important;
+    color: #f87171 !important;
+}
+
+/* Hamburger toggler */
+.navbar-toggler {
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 8px;
+    padding: 6px 10px !important;
+    transition: background 0.2s ease;
+}
+
+.navbar-toggler:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3) !important;
+}
+
+/* Mobile collapse */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background: rgba(13, 17, 23, 0.97);
+        border-radius: 12px;
+        margin-top: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        padding: 12px 16px !important;
+    }
+
+    .nav-link {
+        margin-right: 0 !important;
+        margin-bottom: 4px;
+    }
+}

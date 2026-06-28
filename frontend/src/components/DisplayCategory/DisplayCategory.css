@@ -1,0 +1,44 @@
+/* ═══════════════════════════════════════════════
+   DISPLAY CATEGORY — Horizontal Strip
+   ═══════════════════════════════════════════════ */
+
+.category-strip-wrapper {
+    padding-bottom: 4px;
+}
+
+.section-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #3d4a5c;
+    margin: 0 0 10px 2px;
+}
+
+.category-strip {
+    display: flex;
+    gap: 10px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(99,102,241,0.3) transparent;
+}
+
+.category-strip::-webkit-scrollbar { height: 3px; }
+.category-strip::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.4); border-radius: 3px; }
+
+/* "All" icon inside category card */
+.all-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(99,102,241,0.06));
+    color: #818cf8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(99,102,241,0.2);
+}

@@ -1,0 +1,111 @@
+/* ═══════════════════════════════════════════════
+   EXPLORE PAGE — Next Level Premium Layout
+   ═══════════════════════════════════════════════ */
+
+.explore-container {
+    display: flex;
+    gap: 0;
+    height: calc(100vh - 60px);
+    background: #080c12;
+    overflow: hidden;
+    position: relative;
+}
+
+/* ── LEFT COLUMN ─────────────────────────── */
+.left-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 24px 20px 16px 24px;
+    gap: 0;
+    background: #080c12;
+    position: relative;
+}
+
+/* Section labels */
+.section-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #3d4a5c;
+    margin-bottom: 12px;
+}
+
+/* Categories strip */
+.first-row {
+    flex: 0 0 auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(99,102,241,0.3) transparent;
+}
+
+.first-row::-webkit-scrollbar { height: 4px; }
+.first-row::-webkit-scrollbar-track { background: transparent; }
+.first-row::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.4); border-radius: 4px; }
+
+/* Divider */
+.horizontal-line {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    margin: 16px 0;
+    flex-shrink: 0;
+}
+
+/* Items grid area */
+.second-row {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(99,102,241,0.2) transparent;
+}
+
+.second-row::-webkit-scrollbar { width: 4px; }
+.second-row::-webkit-scrollbar-track { background: transparent; }
+.second-row::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.3); border-radius: 4px; }
+
+/* ── RIGHT COLUMN (Cart Panel) ───────────── */
+.right-column {
+    width: 340px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    background: rgba(13, 17, 26, 0.98);
+    border-left: 1px solid rgba(255,255,255,0.05);
+    height: 100%;
+    box-shadow: -8px 0 40px rgba(0,0,0,0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Top glow line on cart panel */
+.right-column::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(99,102,241,0.6), rgba(16,185,129,0.5), transparent);
+}
+
+.customer-form-container {
+    flex-shrink: 0;
+}
+
+.cart-items-container {
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(99,102,241,0.2) transparent;
+}
+
+.cart-items-container::-webkit-scrollbar { width: 3px; }
+.cart-items-container::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.3); border-radius: 4px; }
+
+.cart-summary-container {
+    flex-shrink: 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
