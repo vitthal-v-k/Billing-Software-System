@@ -30,6 +30,7 @@ public class ItemEntity {
     private String name;
     private BigDecimal price;
     private String description;
+    private Integer quantity;
 
     @CreationTimestamp
     @Column(updatable = false)

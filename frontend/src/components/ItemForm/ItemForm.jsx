@@ -14,6 +14,7 @@ const ItemForm = () => {
         categoryId: "",
         price: "",
         description: "",
+        quantity: "",
     });
 
     const onChangeHandler = (e) => {
@@ -43,7 +44,7 @@ const ItemForm = () => {
                     )
                 );
                 toast.success("Item added successfully!");
-                setData({ name: "", description: "", price: "", categoryId: "" });
+                setData({ name: "", description: "", price: "", categoryId: "", quantity: "" });
                 setImage(false);
             } else {
                 toast.error("Unable to add item");
@@ -177,6 +178,24 @@ const ItemForm = () => {
                         rows={4}
                         value={data.description}
                         onChange={onChangeHandler}
+                    />
+                </div>
+
+                {/* Quantity / Stock */}
+                <div className="form-group">
+                    <label className="form-label-styled" htmlFor="quantity">
+                        <i className="bi bi-boxes"></i> Stock Quantity
+                    </label>
+                    <input
+                        type="number"
+                        id="quantity"
+                        name="quantity"
+                        className="form-input-styled"
+                        placeholder="e.g. 50"
+                        min="1"
+                        value={data.quantity}
+                        onChange={onChangeHandler}
+                        required
                     />
                 </div>
 

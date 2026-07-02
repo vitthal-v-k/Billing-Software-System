@@ -135,3 +135,52 @@
 .item-card:hover .cart-icon {
     color: #6366f1;
 }
+
+/* ── Stock badges ───────────────────────────── */
+.stock-badge {
+    display: inline-block;
+    margin-top: 4px;
+    padding: 2px 7px;
+    border-radius: 6px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.in-stock-badge {
+    background: rgba(16,185,129,0.12);
+    color: #10b981;
+    border: 1px solid rgba(16,185,129,0.25);
+}
+
+.low-stock-badge {
+    background: rgba(251,191,36,0.12);
+    color: #fbbf24;
+    border: 1px solid rgba(251,191,36,0.3);
+    animation: pulse-warning 1.8s ease-in-out infinite;
+}
+
+.out-of-stock-badge {
+    background: rgba(239,68,68,0.12);
+    color: #ef4444;
+    border: 1px solid rgba(239,68,68,0.25);
+}
+
+/* Greyed-out card when out of stock */
+.item-card.out-of-stock {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.item-card.out-of-stock .add-btn {
+    background: #374151;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+@keyframes pulse-warning {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.6; }
+}

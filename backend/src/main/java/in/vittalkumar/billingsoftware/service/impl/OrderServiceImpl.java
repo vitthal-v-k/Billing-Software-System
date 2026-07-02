@@ -3,7 +3,9 @@ package in.vittalkumar.billingsoftware.service.impl;
 import in.vittalkumar.billingsoftware.entity.OrderEntity;
 import in.vittalkumar.billingsoftware.entity.OrderItemEntity;
 import in.vittalkumar.billingsoftware.io.*;
+import in.vittalkumar.billingsoftware.repository.ItemRepository;
 import in.vittalkumar.billingsoftware.repository.OrderEntityRepository;
+import in.vittalkumar.billingsoftware.service.FileUploadService;
 import in.vittalkumar.billingsoftware.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ import java.util.stream.Collectors;
 public class OrderServiceImpl implements OrderService {
     
     private final OrderEntityRepository orderEntityRepository;
+    private final ItemRepository itemRepository;
+    private final FileUploadService fileUploadService;
     
     @Override
     public OrderResponse createOrder(OrderRequest request, String userId) {
@@ -33,7 +37,32 @@ public class OrderServiceImpl implements OrderService {
         newOrder.setItems(orderItems);
         
         newOrder = orderEntityRepository.save(newOrder);
+        // Deduct stock for each ordered item; auto-delete if stock reaches 0
+        deductStock(request.getCartItems());
         return convertToResponse(newOrder);
+    }
+
+    /**
+     * Deducts purchased quantities from item stock.
+     * Automatically deletes any item whose stock drops to 0 or below.
+     */
+    private void deductStock(List<OrderRequest.OrderItemRequest> cartItems) {
+        for (OrderRequest.OrderItemRequest cartItem : cartItems) {
+            itemRepository.findByItemId(cartItem.getItemId()).ifPresent(item -> {
+                int remaining = (item.getQuantity() != null ? item.getQuantity() : 0)
+                                - cartItem.getQuantity();
+                if (remaining <= 0) {
+                    // Auto-remove: delete image from S3 then remove from DB
+                    try {
+                        fileUploadService.deleteFile(item.getImgUrl());
+                    } catch (Exception ignored) {}
+                    itemRepository.delete(item);
+                } else {
+                    item.setQuantity(remaining);
+                    itemRepository.save(item);
+                }
+            });
+        }
     }
 
     private OrderItemEntity convertToOrderItemEntity(OrderRequest.OrderItemRequest orderItemRequest) {

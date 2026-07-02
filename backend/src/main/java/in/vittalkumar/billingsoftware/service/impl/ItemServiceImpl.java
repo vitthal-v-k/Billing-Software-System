@@ -43,6 +43,7 @@ public class ItemServiceImpl implements ItemService {
                 .name(newItem.getName())
                 .description(newItem.getDescription())
                 .price(newItem.getPrice())
+                .quantity(newItem.getQuantity())
                 .imgUrl(fileUploadService.getSignedUrl(newItem.getImgUrl()))
                 .categoryName(newItem.getCategory().getName())
                 .categoryId(newItem.getCategory().getCategoryId())
@@ -57,6 +58,7 @@ public class ItemServiceImpl implements ItemService {
                 .name(request.getName())
                 .description(request.getDescription())
                 .price(request.getPrice())
+                .quantity(request.getQuantity() != null ? request.getQuantity() : 0)
                 .build();
     }
 
