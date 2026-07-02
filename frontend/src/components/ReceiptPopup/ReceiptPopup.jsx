@@ -18,6 +18,15 @@ const ReceiptPopup = ({orderDetails, onClose, onPrint}) => {
                 <p>
                     <strong>Phone:</strong> {orderDetails.phoneNumber}
                 </p>
+                {orderDetails.state && (
+                    <p><strong>State:</strong> {orderDetails.state}</p>
+                )}
+                {orderDetails.district && (
+                    <p><strong>District:</strong> {orderDetails.district}</p>
+                )}
+                {orderDetails.place && (
+                    <p><strong>Place:</strong> {orderDetails.place}</p>
+                )}
                 <hr className="my-3"/>
                 <h5 className=" mb-3">Items Ordered:</h5>
                 <div className="cart-items-scrollable">

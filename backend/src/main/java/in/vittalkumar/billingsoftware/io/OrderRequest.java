@@ -17,6 +17,9 @@ public class OrderRequest {
 
     private String customerName;
     private String phoneNumber;
+    private String state;
+    private String district;
+    private String place;
     private List<OrderItemRequest> cartItems;
     private Double subtotal;
     private Double tax;

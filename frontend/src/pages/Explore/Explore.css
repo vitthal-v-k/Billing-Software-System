@@ -91,19 +91,25 @@
     background: linear-gradient(90deg, transparent, rgba(99,102,241,0.6), rgba(16,185,129,0.5), transparent);
 }
 
-.customer-form-container {
-    flex-shrink: 0;
-}
-
-.cart-items-container {
+/* Scrollable middle section: form + cart items */
+.right-scroll-area {
     flex: 1;
     overflow-y: auto;
+    min-height: 0;
     scrollbar-width: thin;
     scrollbar-color: rgba(99,102,241,0.2) transparent;
 }
 
-.cart-items-container::-webkit-scrollbar { width: 3px; }
-.cart-items-container::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.3); border-radius: 4px; }
+.right-scroll-area::-webkit-scrollbar { width: 3px; }
+.right-scroll-area::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.3); border-radius: 4px; }
+
+.customer-form-container {
+    /* natural height — no overflow tricks needed */
+}
+
+.cart-items-container {
+    /* natural height inside the scroll area */
+}
 
 .cart-summary-container {
     flex-shrink: 0;

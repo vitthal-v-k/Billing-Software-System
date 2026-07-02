@@ -28,6 +28,9 @@ public class OrderEntity {
     private String userId;        // links order to the user (email) who created it
     private String customerName;
     private String phoneNumber;
+    private String state;
+    private String district;
+    private String place;
     private Double subtotal;
     private Double tax;
     private Double grandTotal;

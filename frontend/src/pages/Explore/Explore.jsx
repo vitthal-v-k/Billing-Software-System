@@ -13,6 +13,9 @@ const Explore = () => {
     const [selectedCategory, setSelectedCategory] = useState("");
     const [customerName, setCustomerName] = useState("");
     const [mobileNumber, setMobileNumber] = useState("");
+    const [state, setState] = useState("");
+    const [district, setDistrict] = useState("");
+    const [place, setPlace] = useState("");
 
     return (
         <ErrorBoundary>
@@ -37,25 +40,41 @@ const Explore = () => {
 
                 {/* ── RIGHT: Cart Panel ── */}
                 <div className="right-column">
-                    <div className="customer-form-container">
-                        <CustomerForm
-                            customerName={customerName}
-                            mobileNumber={mobileNumber}
-                            setMobileNumber={setMobileNumber}
-                            setCustomerName={setCustomerName}
-                        />
+                    {/* Scrollable area: form + cart items scroll together */}
+                    <div className="right-scroll-area">
+                        <div className="customer-form-container">
+                            <CustomerForm
+                                customerName={customerName}
+                                mobileNumber={mobileNumber}
+                                setMobileNumber={setMobileNumber}
+                                setCustomerName={setCustomerName}
+                                state={state}
+                                setState={setState}
+                                district={district}
+                                setDistrict={setDistrict}
+                                place={place}
+                                setPlace={setPlace}
+                            />
+                        </div>
+
+                        <div className="cart-items-container">
+                            <CartItems />
+                        </div>
                     </div>
 
-                    <div className="cart-items-container">
-                        <CartItems />
-                    </div>
-
+                    {/* Pinned at bottom: totals + payment */}
                     <div className="cart-summary-container">
                         <CartSummary
                             customerName={customerName}
                             mobileNumber={mobileNumber}
                             setMobileNumber={setMobileNumber}
                             setCustomerName={setCustomerName}
+                            state={state}
+                            setState={setState}
+                            district={district}
+                            setDistrict={setDistrict}
+                            place={place}
+                            setPlace={setPlace}
                         />
                     </div>
                 </div>

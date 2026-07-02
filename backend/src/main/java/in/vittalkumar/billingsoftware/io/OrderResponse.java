@@ -18,6 +18,9 @@ public class OrderResponse {
     private String orderId;
     private String customerName;
     private String phoneNumber;
+    private String state;
+    private String district;
+    private String place;
     private List<OrderResponse.OrderItemResponse> items;
     private Double subtotal;
     private Double tax;

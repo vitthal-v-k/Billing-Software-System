@@ -1,6 +1,9 @@
 import './CustomerForm.css';
 
-const CustomerForm = ({ customerName, mobileNumber, setMobileNumber, setCustomerName }) => {
+const CustomerForm = ({
+    customerName, mobileNumber, setMobileNumber, setCustomerName,
+    state, setState, district, setDistrict, place, setPlace
+}) => {
     return (
         <div className="customer-form">
             <p className="cart-panel-title">
@@ -29,6 +32,42 @@ const CustomerForm = ({ customerName, mobileNumber, setMobileNumber, setCustomer
                     placeholder="Enter mobile..."
                     value={mobileNumber}
                     onChange={(e) => setMobileNumber(e.target.value)}
+                />
+            </div>
+
+            <div className="form-field">
+                <label htmlFor="state">State</label>
+                <i className="bi bi-geo-alt field-icon"></i>
+                <input
+                    type="text"
+                    id="state"
+                    placeholder="Enter state..."
+                    value={state}
+                    onChange={(e) => setState(e.target.value)}
+                />
+            </div>
+
+            <div className="form-field">
+                <label htmlFor="district">District</label>
+                <i className="bi bi-map field-icon"></i>
+                <input
+                    type="text"
+                    id="district"
+                    placeholder="Enter district..."
+                    value={district}
+                    onChange={(e) => setDistrict(e.target.value)}
+                />
+            </div>
+
+            <div className="form-field">
+                <label htmlFor="place">Place</label>
+                <i className="bi bi-pin-map field-icon"></i>
+                <input
+                    type="text"
+                    id="place"
+                    placeholder="Enter place..."
+                    value={place}
+                    onChange={(e) => setPlace(e.target.value)}
                 />
             </div>
         </div>

@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import {createRazorpayOrder, verifyPayment} from "../../Service/PaymentService.js";
 import {AppConstants} from "../../util/constants.js";
 
-const CartSummary = ({customerName, mobileNumber, setMobileNumber,setCustomerName}) => {
+const CartSummary = ({customerName, mobileNumber, setMobileNumber, setCustomerName, state, setState, district, setDistrict, place, setPlace}) => {
 
     const {cartItems, clearCart} = useContext(AppContext);
 
@@ -25,6 +25,9 @@ const CartSummary = ({customerName, mobileNumber, setMobileNumber,setCustomerNam
     const clearAll = () => {
         setCustomerName("");
         setMobileNumber("");
+        setState("");
+        setDistrict("");
+        setPlace("");
         clearCart();
     }
 
@@ -86,6 +89,9 @@ const CartSummary = ({customerName, mobileNumber, setMobileNumber,setCustomerNam
         const orderData = {
             customerName,
             phoneNumber: mobileNumber,
+            state,
+            district,
+            place,
             cartItems: deduplicatedItems,
             subtotal: totalAmount,
             tax,
