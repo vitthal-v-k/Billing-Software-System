@@ -44,6 +44,12 @@ public class OrderController {
         return orderService.getLatestOrders(currentUserEmail());
     }
 
+    /** Admin-only: returns ALL orders across all users with user names */
+    @GetMapping("/admin/all")
+    public List<OrderResponse> getAllOrders() {
+        return orderService.getAllOrders();
+    }
+
     @PostMapping("/verify")
     public OrderResponse verifyPayment(@RequestBody PaymentVerificationRequest request) {
         return orderService.verifyPayment(request);

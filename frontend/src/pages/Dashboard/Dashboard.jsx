@@ -1,15 +1,18 @@
 import './Dashboard.css';
-import { useEffect, useState } from 'react';
-import { latestOrders } from '../../Service/OrderService.js';
+import { useEffect, useState, useContext } from 'react';
+import { latestOrders, allOrders } from '../../Service/OrderService.js';
+import { AppContext } from '../../context/AppContext.jsx';
 
 const Dashboard = () => {
+    const { userRole } = useContext(AppContext);
+    const isAdmin = userRole === "ROLE_ADMIN";
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const res = await latestOrders();
+                const res = isAdmin ? await allOrders() : await latestOrders();
                 setOrders(res.data || []);
             } catch (err) {
                 console.error('Failed to load orders:', err);
@@ -18,7 +21,7 @@ const Dashboard = () => {
             }
         };
         fetchOrders();
-    }, []);
+    }, [isAdmin]);
 
     // Compute today's stats — timezone-safe local date comparison
     const toLocalDateStr = (d) => {

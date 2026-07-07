@@ -9,7 +9,9 @@ import CartSummary from "../../components/CartSummary/CartSummary.jsx";
 import ErrorBoundary from "../../components/ErrorBoundary/ErrorBoundary.jsx";
 
 const Explore = () => {
-    const { categories } = useContext(AppContext);
+    const { categories, userRole } = useContext(AppContext);
+    const isAdmin = userRole === "ROLE_ADMIN";
+
     const [selectedCategory, setSelectedCategory] = useState("");
     const [customerName, setCustomerName] = useState("");
     const [mobileNumber, setMobileNumber] = useState("");
@@ -19,10 +21,16 @@ const Explore = () => {
 
     return (
         <ErrorBoundary>
-            <div className="explore-container">
+            <div className={`explore-container ${isAdmin ? 'explore-admin-view' : ''}`}>
 
                 {/* ── LEFT: Categories + Items ── */}
                 <div className="left-column">
+                    {isAdmin && (
+                        <div className="admin-explore-banner">
+                            <i className="bi bi-shield-check"></i>
+                            <span>Admin View — Click <i className="bi bi-trash3"></i> on any item to delete it</span>
+                        </div>
+                    )}
                     <div className="first-row">
                         <DisplayCategory
                             selectedCategory={selectedCategory}
@@ -38,12 +46,33 @@ const Explore = () => {
                     </div>
                 </div>
 
-                {/* ── RIGHT: Cart Panel ── */}
-                <div className="right-column">
-                    {/* Scrollable area: form + cart items scroll together */}
-                    <div className="right-scroll-area">
-                        <div className="customer-form-container">
-                            <CustomerForm
+                {/* ── RIGHT: Cart Panel — hidden for admin ── */}
+                {!isAdmin && (
+                    <div className="right-column">
+                        <div className="right-scroll-area">
+                            <div className="customer-form-container">
+                                <CustomerForm
+                                    customerName={customerName}
+                                    mobileNumber={mobileNumber}
+                                    setMobileNumber={setMobileNumber}
+                                    setCustomerName={setCustomerName}
+                                    state={state}
+                                    setState={setState}
+                                    district={district}
+                                    setDistrict={setDistrict}
+                                    place={place}
+                                    setPlace={setPlace}
+                                />
+                            </div>
+
+                            <div className="cart-items-container">
+                                <CartItems />
+                            </div>
+                        </div>
+
+                        {/* Pinned at bottom: totals + payment */}
+                        <div className="cart-summary-container">
+                            <CartSummary
                                 customerName={customerName}
                                 mobileNumber={mobileNumber}
                                 setMobileNumber={setMobileNumber}
@@ -56,28 +85,8 @@ const Explore = () => {
                                 setPlace={setPlace}
                             />
                         </div>
-
-                        <div className="cart-items-container">
-                            <CartItems />
-                        </div>
                     </div>
-
-                    {/* Pinned at bottom: totals + payment */}
-                    <div className="cart-summary-container">
-                        <CartSummary
-                            customerName={customerName}
-                            mobileNumber={mobileNumber}
-                            setMobileNumber={setMobileNumber}
-                            setCustomerName={setCustomerName}
-                            state={state}
-                            setState={setState}
-                            district={district}
-                            setDistrict={setDistrict}
-                            place={place}
-                            setPlace={setPlace}
-                        />
-                    </div>
-                </div>
+                )}
 
             </div>
         </ErrorBoundary>

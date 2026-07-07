@@ -20,6 +20,9 @@ export const AppContextProvider = ( props ) => {
     const [userRole, setUserRole] = useState(
         () => localStorage.getItem('userRole') || null
     );
+    const [userName, setUserName] = useState(
+        () => localStorage.getItem('userName') || null
+    );
 
     const addToCart = (item) => {
         const existingItem = cartItems.find(cartItem => cartItem.itemId === item.itemId);
@@ -74,22 +77,26 @@ export const AppContextProvider = ( props ) => {
         loadData();
     }, [token]);
 
-    const login = (jwtToken, role) => {
+    const login = (jwtToken, role, name) => {
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('token', jwtToken);
         localStorage.setItem('userRole', role);
+        localStorage.setItem('userName', name || '');
         setIsLoggedIn(true);
         setToken(jwtToken);
         setUserRole(role);
+        setUserName(name || '');
     };
 
     const logout = () => {
         localStorage.removeItem('isLoggedIn');
         localStorage.removeItem('token');
         localStorage.removeItem('userRole');
+        localStorage.removeItem('userName');
         setIsLoggedIn(false);
         setToken(null);
         setUserRole(null);
+        setUserName(null);
         setCategories([]);
         setItemsData([]);
     };
@@ -106,6 +113,7 @@ export const AppContextProvider = ( props ) => {
         isLoggedIn,
         token,
         userRole,
+        userName,
         login,
         logout,
         addToCart,

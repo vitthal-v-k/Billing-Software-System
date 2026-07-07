@@ -5,6 +5,7 @@ import in.vittalkumar.billingsoftware.entity.OrderItemEntity;
 import in.vittalkumar.billingsoftware.io.*;
 import in.vittalkumar.billingsoftware.repository.ItemRepository;
 import in.vittalkumar.billingsoftware.repository.OrderEntityRepository;
+import in.vittalkumar.billingsoftware.repository.UserRepository;
 import in.vittalkumar.billingsoftware.service.FileUploadService;
 import in.vittalkumar.billingsoftware.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderEntityRepository orderEntityRepository;
     private final ItemRepository itemRepository;
     private final FileUploadService fileUploadService;
+    private final UserRepository userRepository;
     
     @Override
     public OrderResponse createOrder(OrderRequest request, String userId) {
@@ -76,8 +78,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private OrderResponse convertToResponse(OrderEntity newOrder) {
+        // Look up the name of the user who placed the order
+        String placedByEmail = newOrder.getUserId();
+        String placedByName = userRepository.findByEmail(placedByEmail)
+                .map(u -> u.getName())
+                .orElse(placedByEmail); // fallback to email if user not found
+
         return OrderResponse.builder()
                 .orderId(newOrder.getOrderId())
+                .placedBy(placedByEmail)
+                .placedByName(placedByName)
                 .customerName(newOrder.getCustomerName())
                 .phoneNumber(newOrder.getPhoneNumber())
                 .state(newOrder.getState())
@@ -93,7 +103,6 @@ public class OrderServiceImpl implements OrderService {
                         .paymentDetails(newOrder.getPaymentDetails())
                         .createdAt(newOrder.getCreatedAt())
                         .build();
-
     }
     private OrderResponse.OrderItemResponse convertToItemResponse(OrderItemEntity orderItemEntity){
          return OrderResponse.OrderItemResponse.builder()
@@ -130,6 +139,14 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderResponse> getLatestOrders(String userId) {
         return orderEntityRepository.findAllByUserIdOrderByCreatedAtDesc(userId)
+                .stream()
+                .map(this::convertToResponse)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<OrderResponse> getAllOrders() {
+        return orderEntityRepository.findAllByOrderByCreatedAtDesc()
                 .stream()
                 .map(this::convertToResponse)
                 .collect(Collectors.toList());

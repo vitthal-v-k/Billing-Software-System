@@ -16,6 +16,8 @@ public class OrderResponse {
 
 
     private String orderId;
+    private String placedBy;        // email of the logged-in user who placed the order
+    private String placedByName;    // name of the user who placed the order
     private String customerName;
     private String phoneNumber;
     private String state;

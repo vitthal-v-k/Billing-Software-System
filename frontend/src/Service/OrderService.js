@@ -10,6 +10,10 @@ export const latestOrders = async () => {
     return await axios.get(`${BASE_URL}/orders/latest`, { headers: authHeader() });
 }
 
+export const allOrders = async () => {
+    return await axios.get(`${BASE_URL}/orders/admin/all`, { headers: authHeader() });
+}
+
 export const createOrder = async (order) => {
     return await axios.post(`${BASE_URL}/orders`, order, { headers: authHeader() });
 }

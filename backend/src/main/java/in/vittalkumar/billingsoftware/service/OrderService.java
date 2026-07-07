@@ -14,5 +14,7 @@ public interface OrderService {
 
     List<OrderResponse> getLatestOrders(String userId);
 
+    List<OrderResponse> getAllOrders();
+
     OrderResponse verifyPayment(PaymentVerificationRequest request);
 }

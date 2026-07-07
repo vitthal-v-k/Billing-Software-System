@@ -23,8 +23,8 @@ const Login = () => {
                 email,
                 password
             });
-            const { token, role } = response.data;
-            login(token, role);
+            const { token, role, name } = response.data;
+            login(token, role, name);
             navigate('/dashboard');
         } catch (err) {
             const msg = err.response?.data?.message || 'Invalid email or password';

@@ -8,6 +8,7 @@ import Explore from "./pages/Explore/Explore.jsx";
 import { Toaster } from "react-hot-toast";
 import Login from "./pages/Login/Login.jsx";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.jsx";
+import AdminRoute from "./components/AdminRoute/AdminRoute.jsx";
 import OrderHistory from "./pages/OrderHistory/OrderHistory.jsx";
 
 const App = () => {
@@ -25,24 +26,26 @@ const App = () => {
                 <Route path="/" element={<Navigate to="/login" replace />}/>
                 <Route path="/login" element={<Login/>}/>
 
-                {/* Protected Routes */}
+                {/* Protected Routes (any logged-in user) */}
                 <Route path="/dashboard" element={
                     <ProtectedRoute><Dashboard/></ProtectedRoute>
-                }/>
-                <Route path="/category" element={
-                    <ProtectedRoute><ManageCategory/></ProtectedRoute>
-                }/>
-                <Route path="/users" element={
-                    <ProtectedRoute><ManageUsers/></ProtectedRoute>
-                }/>
-                <Route path="/items" element={
-                    <ProtectedRoute><ManageItems/></ProtectedRoute>
                 }/>
                 <Route path="/explore" element={
                     <ProtectedRoute><Explore/></ProtectedRoute>
                 }/>
                 <Route path="/orders" element={
                     <ProtectedRoute><OrderHistory/></ProtectedRoute>
+                }/>
+
+                {/* Admin-only Routes */}
+                <Route path="/category" element={
+                    <AdminRoute><ManageCategory/></AdminRoute>
+                }/>
+                <Route path="/items" element={
+                    <AdminRoute><ManageItems/></AdminRoute>
+                }/>
+                <Route path="/users" element={
+                    <AdminRoute><ManageUsers/></AdminRoute>
                 }/>
 
                 {/* Catch-all → login */}

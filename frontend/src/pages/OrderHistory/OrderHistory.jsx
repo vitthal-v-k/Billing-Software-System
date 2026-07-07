@@ -1,8 +1,12 @@
 import './OrderHistory.css';
-import { useEffect, useState } from "react";
-import { latestOrders } from "../../Service/OrderService.js";
+import { useContext, useEffect, useState } from "react";
+import { latestOrders, allOrders } from "../../Service/OrderService.js";
+import { AppContext } from "../../context/AppContext.jsx";
 
 const OrderHistory = () => {
+    const { userRole } = useContext(AppContext);
+    const isAdmin = userRole === "ROLE_ADMIN";
+
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
@@ -11,7 +15,7 @@ const OrderHistory = () => {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await latestOrders();
+                const response = isAdmin ? await allOrders() : await latestOrders();
                 setOrders(response.data);
             } catch (error) {
                 console.log(error);
@@ -20,7 +24,7 @@ const OrderHistory = () => {
             }
         };
         fetchOrders();
-    }, []);
+    }, [isAdmin]);
 
     const formatDate = (dateString) => {
         const d = new Date(dateString);
@@ -35,7 +39,8 @@ const OrderHistory = () => {
     const filtered = orders.filter(o => {
         const matchSearch =
             o.orderId?.toLowerCase().includes(search.toLowerCase()) ||
-            o.customer?.toLowerCase().includes(search.toLowerCase()) ||
+            o.customerName?.toLowerCase().includes(search.toLowerCase()) ||
+            o.placedByName?.toLowerCase().includes(search.toLowerCase()) ||
             o.phoneNumber?.includes(search);
         const matchFilter = filter === "ALL" || getStatus(o) === filter;
         return matchSearch && matchFilter;
@@ -67,8 +72,14 @@ const OrderHistory = () => {
                         <i className="bi bi-receipt"></i>
                     </div>
                     <div>
-                        <h1 className="oh-title">Order History</h1>
-                        <p className="oh-subtitle">{orders.length} total orders</p>
+                        <h1 className="oh-title">
+                            {isAdmin ? "All Users Transaction History" : "Order History"}
+                        </h1>
+                        <p className="oh-subtitle">
+                            {isAdmin
+                                ? `${orders.length} total orders across all users`
+                                : `${orders.length} total orders`}
+                        </p>
                     </div>
                 </div>
 
@@ -96,7 +107,9 @@ const OrderHistory = () => {
                     <input
                         type="text"
                         className="oh-search"
-                        placeholder="Search by order ID, customer, phone..."
+                        placeholder={isAdmin
+                            ? "Search by order ID, user name, customer, phone..."
+                            : "Search by order ID, customer, phone..."}
                         value={search}
                         onChange={e => setSearch(e.target.value)}
                     />
@@ -135,6 +148,7 @@ const OrderHistory = () => {
                         <thead>
                             <tr>
                                 <th><i className="bi bi-hash"></i> Order ID</th>
+                                {isAdmin && <th><i className="bi bi-person-badge"></i> Placed By</th>}
                                 <th><i className="bi bi-person"></i> Customer</th>
                                 <th><i className="bi bi-box-seam"></i> Items</th>
                                 <th><i className="bi bi-currency-rupee"></i> Total</th>
@@ -155,12 +169,32 @@ const OrderHistory = () => {
                                             <span className="oh-order-id">{order.orderId?.slice(0, 16)}...</span>
                                         </td>
 
+                                        {/* Placed By — admin only */}
+                                        {isAdmin && (
+                                            <td>
+                                                <div className="oh-customer">
+                                                    <div className="oh-avatar" style={{ background: 'linear-gradient(135deg,#6366f1,#8b5cf6)' }}>
+                                                        {order.placedByName?.[0]?.toUpperCase() || '?'}
+                                                    </div>
+                                                    <div>
+                                                        <p className="oh-cust-name" style={{ color: '#a78bfa' }}>
+                                                            {order.placedByName || '—'}
+                                                        </p>
+                                                        <p className="oh-cust-phone">
+                                                            <i className="bi bi-envelope"></i>
+                                                            {order.placedBy}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        )}
+
                                         {/* Customer */}
                                         <td>
                                             <div className="oh-customer">
-                                                <div className="oh-avatar">{order.customer?.[0]?.toUpperCase() || '?'}</div>
+                                                <div className="oh-avatar">{order.customerName?.[0]?.toUpperCase() || '?'}</div>
                                                 <div>
-                                                    <p className="oh-cust-name">{order.customer || '—'}</p>
+                                                    <p className="oh-cust-name">{order.customerName || '—'}</p>
                                                     <p className="oh-cust-phone">
                                                         <i className="bi bi-telephone"></i>
                                                         {order.phoneNumber}

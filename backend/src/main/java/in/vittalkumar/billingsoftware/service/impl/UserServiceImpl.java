@@ -58,6 +58,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public String getUserName(String email) {
+       UserEntity existingUser = userRepository.findByEmail(email)
+               .orElseThrow(() -> new UsernameNotFoundException("User not found for the email:"+email));
+       return existingUser.getName();
+    }
+
+
+    @Override
     public List<UserResponse> readUser() {
        return userRepository.findAll()
                .stream()

@@ -184,3 +184,25 @@
     0%, 100% { opacity: 1; }
     50%       { opacity: 0.6; }
 }
+
+/* ── Admin: delete button in Explore ───────── */
+.delete-btn-explore {
+    background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+    box-shadow: 0 4px 14px rgba(239,68,68,0.4) !important;
+}
+
+.delete-btn-explore:hover {
+    transform: scale(1.15);
+    box-shadow: 0 6px 20px rgba(239,68,68,0.6) !important;
+}
+
+.admin-item-card {
+    cursor: default;
+    border-color: rgba(99,102,241,0.08);
+}
+
+.admin-item-card:hover {
+    border-color: rgba(239,68,68,0.25);
+    background: rgba(239,68,68,0.04);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3), 0 0 0 1px rgba(239,68,68,0.12);
+}

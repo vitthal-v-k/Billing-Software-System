@@ -9,6 +9,7 @@ public interface UserService {
 
     UserResponse createUser(UserRequest request);
     String getUserRole(String email);
+    String getUserName(String email);
     List<UserResponse> readUser();
     void deleteUser(String id);
 }
